@@ -4,18 +4,18 @@ OmniDev is a web application that automates code modification workflows. It clon
 
 ## Features
 
-* Repository Parsing: Clones target GitHub repositories and creates file snapshots for processing.
-* Code Patch Generation: Uses Gemini API models (gemini-3.6-flash, gemini-2.5-pro) to generate structured multi-file edits.
-* Build Verification: Runs local validation checks (npm install / build scripts) before staging files.
-* Human-in-the-Loop Approval: Real-time logs and visual diff inspection UI before pushing upstream.
-* PR Automation: Integrates Octokit REST API and simple-git for automated branch handling and PR creation.
+- Repository Parsing: Clones target GitHub repositories and creates file snapshots for processing.
+- Code Patch Generation: Uses Gemini API models (gemini-3.6-flash, gemini-2.5-pro) to generate structured multi-file edits.
+- Build Verification: Runs local validation checks (npm install / build scripts) before staging files.
+- Human-in-the-Loop Approval: Real-time logs and visual diff inspection UI before pushing upstream.
+- PR Automation: Integrates Octokit REST API and simple-git for automated branch handling and PR creation.
 
 ## Tech Stack
 
-* Frontend: React.js, Vite, CSS
-* Backend: Node.js, Express.js
-* AI Integration: @google/genai
-* Git Tools: Octokit REST API, simple-git
+- Frontend: React.js, Vite, CSS
+- Backend: Node.js, Express.js
+- AI Integration: @google/genai
+- Git Tools: Octokit REST API, simple-git
 
 ## Workflow
 
@@ -37,11 +37,13 @@ GITHUB_TOKEN=your_github_token
 ## Getting Started
 
 ### Backend
+
 cd backend
 npm install
 node server.js
 
 ### Frontend
+
 cd frontend
 npm install
 npm run dev

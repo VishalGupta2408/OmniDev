@@ -42,8 +42,8 @@ export async function generateCodePatch(
     `;
   }
 
-  // Updated to supported Gemini models
-  const modelsToTry = ["gemini-3.6-flash", "gemini-2.5-pro"];
+  // Updated to active supported Gemini models
+  const modelsToTry = ["gemini-1.5-flash", "gemini-1.5-pro"];
   let response = null;
   let lastError = null;
 
