@@ -102,7 +102,7 @@ router.post("/run-agent", async (req, res) => {
     while (attempt < maxAttempts && !buildSuccess) {
       attempt++;
       sendLog(
-        ` Attempt ${attempt}/${maxAttempts}: Requesting patch from Gemini API...`,
+        `Attempt ${attempt}/${maxAttempts}: Requesting patch from Gemini API...`,
         "process"
       );
 
@@ -129,19 +129,29 @@ router.post("/run-agent", async (req, res) => {
 
       // Build & Verification
       try {
-        const packageJsonPath = path.join(localRepoPath, "package.json");
+        let packageJsonPath = path.join(localRepoPath, "package.json");
+        let workDir = localRepoPath;
+
+        if (!fsSync.existsSync(packageJsonPath)) {
+          const subPath = path.join(localRepoPath, "backend", "package.json");
+          if (fsSync.existsSync(subPath)) {
+            packageJsonPath = subPath;
+            workDir = path.join(localRepoPath, "backend");
+            sendLog("📦 Found package.json inside backend/ directory.", "info");
+          }
+        }
 
         if (fsSync.existsSync(packageJsonPath)) {
           sendLog("📦 Running `npm install` for verification...", "process");
           await execPromise("npm install --legacy-peer-deps", {
-            cwd: localRepoPath,
+            cwd: workDir,
           });
         }
 
         const pkg = JSON.parse(await fs.readFile(packageJsonPath, "utf-8"));
         if (pkg.scripts && pkg.scripts.build) {
           sendLog("⚡ Validating build with `npm run build`...", "process");
-          await execPromise("npm run build", { cwd: localRepoPath });
+          await execPromise("npm run build", { cwd: workDir });
         }
 
         buildSuccess = true;
