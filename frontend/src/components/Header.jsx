@@ -1,36 +1,49 @@
-import { Sparkles } from "lucide-react";
+import { Sparkles, Terminal, ShieldCheck } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="border-b border-gray-800/60 bg-[#0d0e15]/80 backdrop-blur-xl sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+    <header className="border-b border-gray-800/80 bg-[#0d0e15]/90 backdrop-blur-xl sticky top-0 z-50 px-6 py-4 flex items-center justify-between shadow-lg shadow-black/20">
+      
+      {/* Left: Branding & Badge */}
       <div className="flex items-center gap-3">
-        <div className="bg-gradient-to-br from-purple-600 to-indigo-600 p-2 rounded-xl shadow-lg shadow-purple-500/20 border border-purple-400/30">
+        <div className="bg-gradient-to-br from-purple-600 to-indigo-600 p-2.5 rounded-2xl shadow-lg shadow-purple-600/25 border border-purple-400/30">
           <Sparkles className="w-5 h-5 text-white animate-pulse" />
         </div>
         <div>
-          <h1 className="font-bold text-lg tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent flex items-center gap-2">
+          <h1 className="font-bold text-base md:text-lg tracking-tight text-white flex items-center gap-2">
             🤖 OmniDev{" "}
-            <span className="text-xs uppercase px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
-              AI Engineer
+            <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 shadow-sm">
+              AI Software Engineer
             </span>
           </h1>
+          <p className="text-[11px] text-gray-400 hidden sm:block font-mono">
+            Autonomous Code Cloning, Patch Generation & PR Creator
+          </p>
         </div>
       </div>
-      <div className="flex items-center gap-4 text-sm text-gray-400">
-        <span className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20 text-xs font-medium">
+
+      {/* Right: Status & GitHub Link */}
+      <div className="flex items-center gap-3 text-sm">
+        
+        {/* System Online Badge */}
+        <div className="flex items-center gap-2 bg-emerald-950/40 text-emerald-400 px-3 py-1.5 rounded-full border border-emerald-500/30 text-xs font-mono shadow-inner">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          System Online
-        </span>
+          <span className="font-medium">System Online</span>
+        </div>
+
+        {/* GitHub Repository Link */}
         <a
           href="https://github.com"
           target="_blank"
           rel="noreferrer"
-          className="hover:text-white transition-colors"
+          className="bg-[#161722] hover:bg-gray-800 text-gray-300 hover:text-white p-2 rounded-xl transition-all border border-gray-800 hover:border-gray-700 flex items-center gap-1.5 shadow-sm"
+          aria-label="GitHub Repository"
         >
-          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
           </svg>
         </a>
+
       </div>
     </header>
   );

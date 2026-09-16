@@ -1,4 +1,4 @@
-import { Code2, Loader2, Play } from "lucide-react";
+import { Code2, Loader2, Play, Sparkles } from "lucide-react";
 
 export default function TaskForm({
   repoOwner,
@@ -12,6 +12,14 @@ export default function TaskForm({
   loading,
   handleSubmit,
 }) {
+  // Pre-built task examples for quick selection
+  const exampleTasks = [
+    "Add user authentication and login routes",
+    "Fix failing unit tests in backend build",
+    "Add a responsive footer component with social links",
+    "Build a booking system with status tracking"
+  ];
+
   return (
     <section className="lg:col-span-6 bg-[#12131c]/70 border border-gray-800/80 rounded-2xl p-6 backdrop-blur-xl shadow-2xl relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -21,7 +29,7 @@ export default function TaskForm({
         Agent Task Configuration
       </h2>
       <p className="text-sm text-gray-400 mb-6">
-        Enter your repository details and task description for automated PR generation.
+        Turn GitHub issues into production-ready code with autonomous AI execution.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -69,22 +77,45 @@ export default function TaskForm({
         </div>
 
         <div>
-          <label className="block text-xs font-medium uppercase tracking-wider text-gray-400 mb-1.5">
-            Task Description
-          </label>
+          <div className="flex items-center justify-between mb-1.5">
+            <label className="block text-xs font-medium uppercase tracking-wider text-gray-400">
+              Task Description
+            </label>
+            <span className="text-xs text-purple-400 flex items-center gap-1">
+              <Sparkles className="w-3 h-3" /> Powered by Gemini
+            </span>
+          </div>
           <textarea
             rows="4"
             value={taskDescription}
             onChange={(e) => setTaskDescription(e.target.value)}
-            placeholder="e.g., Add a footer component"
+            placeholder="Describe what you want OmniDev to build or fix..."
             className="w-full bg-[#0a0a0f] border border-gray-800 rounded-xl p-4 text-sm focus:outline-none focus:border-purple-500 text-gray-200 resize-none"
             required
           ></textarea>
         </div>
 
+        {/* Quick Example Task Chips */}
+        <div>
+          <p className="text-xs text-gray-400 mb-2 font-medium">Try example tasks:</p>
+          <div className="flex flex-wrap gap-2">
+            {exampleTasks.map((task, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setTaskDescription(task)}
+                className="text-xs bg-[#1a1b26] hover:bg-purple-950/40 text-gray-300 hover:text-purple-300 border border-gray-800 hover:border-purple-800/60 px-3 py-1.5 rounded-lg transition-all"
+              >
+                {task}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <button
           type="submit"
           disabled={loading}
+          лект="submit"
           className="w-full mt-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium py-3 rounded-xl shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (

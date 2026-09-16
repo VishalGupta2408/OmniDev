@@ -189,20 +189,24 @@ export default function App() {
     <div className="min-h-screen bg-[#090a0f] text-gray-100 flex flex-col selection:bg-purple-500 selection:text-white">
       <Header />
 
-      <main className="flex-1 max-w-6xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        <TaskForm
-          repoOwner={repoOwner}
-          setRepoOwner={setRepoOwner}
-          repoName={repoName}
-          setRepoName={setRepoName}
-          repoUrl={repoUrl}
-          setRepoUrl={setRepoUrl}
-          taskDescription={taskDescription}
-          setTaskDescription={setTaskDescription}
-          loading={loading}
-          handleSubmit={handleSubmit}
-        />
+      <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Left Form Column (5 spans) */}
+        <div className="lg:col-span-5 w-full">
+          <TaskForm
+            repoOwner={repoOwner}
+            setRepoOwner={setRepoOwner}
+            repoName={repoName}
+            setRepoName={setRepoName}
+            repoUrl={repoUrl}
+            setRepoUrl={setRepoUrl}
+            taskDescription={taskDescription}
+            setTaskDescription={setTaskDescription}
+            loading={loading}
+            handleSubmit={handleSubmit}
+          />
+        </div>
 
+        {/* Right Terminal & Approval Column (7 spans) */}
         <div className="lg:col-span-7 flex flex-col gap-6 w-full">
           <TerminalOutput
             logs={logs}
@@ -224,8 +228,9 @@ export default function App() {
           )}
         </div>
 
+        {/* Success Card Full Width */}
         {prUrl && (
-          <div className="lg:col-span-12">
+          <div className="lg:col-span-12 w-full">
             <TaskSummaryCard
               repoOwner={repoOwner}
               repoName={repoName}
